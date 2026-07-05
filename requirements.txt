@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+openai
+transformers
+torch
+torchvision
+torchaudio
+pandas
+numpy
+streamlit
+requests
+python-dotenv
+huggingface-hub

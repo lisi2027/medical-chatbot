@@ -1,0 +1,54 @@
+{
+    # 全局配置
+    auto_https off
+    log {
+        level info
+        output file ./logs/caddy.log
+    }
+}
+
+# 开发环境配置 - 使用 HTTP
+:80 {
+    # FastAPI 后端 API - /api 路径
+    handle_path /api/* {
+        reverse_proxy http://127.0.0.1:6066 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+    
+    # Streamlit 前端 - 其他路径
+    reverse_proxy http://127.0.0.1:8501 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+# 生产环境配置 - 使用 HTTPS（取消注释并替换域名）
+# your-domain.com {
+#     tls {
+#         dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+#     }
+#     
+#     # Streamlit 前端
+#     reverse_proxy http://127.0.0.1:8501 {
+#         header_up Host {host}
+#         header_up X-Real-IP {remote_host}
+#         header_up X-Forwarded-For {remote_host}
+#         header_up X-Forwarded-Proto {scheme}
+#     }
+#     
+#     # FastAPI 后端 API
+#     handle_path /api/* {
+#         reverse_proxy http://127.0.0.1:6066 {
+#             header_up Host {host}
+#             header_up X-Real-IP {remote_host}
+#             header_up X-Forwarded-For {remote_host}
+#             header_up X-Forwarded-Proto {scheme}
+#         }
+#     }
+# }

@@ -1,0 +1,23 @@
+title: 医疗聊天机器人
+emoji: 🏥
+colorFrom: cyan
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.38.0
+python_version: 3.10
+app_file: streamlit_ui_bot.py
+fullWidth: true
+
+variables:
+  - name: DASHSCOPE_API_KEY
+    description: 阿里云百炼 API Key
+    required: true
+  - name: DASHSCOPE_BASE_URL
+    description: 阿里云百炼 API 地址
+    default: https://dashscope.aliyuncs.com/compatible-mode/v1
+  - name: BACKEND_URL
+    description: FastAPI 后端地址
+    default: http://127.0.0.1:6066
+  - name: USE_RAG
+    description: 是否启用 RAG
+    default: true
