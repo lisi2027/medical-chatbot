@@ -57,6 +57,23 @@
 
 - Python 3.10+
 - 阿里云百炼 API Key（免费申请）
+- 医疗知识库数据（请联系作者获取）
+
+### 数据准备
+
+由于医疗数据涉及隐私，本仓库不包含 Data/ 文件夹。使用前请将数据文件放置在 `Data/` 目录下，文件结构如下：
+
+```
+Data/
+├── Andrology.csv      # 男科数据
+├── IM.csv             # 心血管科数据
+├── Obstetrics.csv     # 妇产科数据
+├── Oncology.csv       # 肿瘤科数据
+├── Pediatrics.csv     # 儿科数据
+└── Surgery.csv        # 外科数据
+```
+
+数据格式要求：每行包含 `question`（问题）和 `answer`（答案）两列。
 
 ### 安装步骤
 
